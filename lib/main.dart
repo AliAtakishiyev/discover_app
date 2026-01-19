@@ -1,4 +1,4 @@
-import 'package:discover_app/features/pages/home_screen.dart';
+import 'package:discover_app/features/ui/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       home: HomeScreen(),
     );
