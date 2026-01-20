@@ -1,4 +1,4 @@
-import 'package:discover_app/features/ui/pages/home_screen.dart';
+import 'package:discover_app/features/discover/ui/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

@@ -1,4 +1,4 @@
-import 'package:discover_app/features/ui/widgets/custom_app_bar.dart';
+import 'package:discover_app/features/discover/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
