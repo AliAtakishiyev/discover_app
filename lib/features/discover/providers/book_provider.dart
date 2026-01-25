@@ -5,7 +5,7 @@ import 'package:discover_app/features/discover/data/models/book_model.dart';
 import 'package:discover_app/features/discover/data/repositories/book_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final BookRepositoryProvider = Provider<BookRepository>((ref) {
+final bookRepositoryProvider = Provider<BookRepository>((ref) {
   return BookRepository(DioClient());
 });
 
@@ -18,7 +18,7 @@ class BookNotifier extends AsyncNotifier<List<BookModel>> {
 
   @override
   Future<List<BookModel>> build() async {
-    _repository = ref.read(BookRepositoryProvider);
+    _repository = ref.read(bookRepositoryProvider);
     return [];
   }
 
