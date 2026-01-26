@@ -1,3 +1,4 @@
+import 'package:discover_app/features/discover/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class ResultScreen extends StatelessWidget {
@@ -6,10 +7,8 @@ class ResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Column(children: [
-            
-          ],
-        )),
+      backgroundColor: Color(0xffF8F7F0),
+      body: SafeArea(child: Column(children: [CustomAppBar()])),
     );
   }
 }
