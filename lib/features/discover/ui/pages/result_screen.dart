@@ -2,7 +2,9 @@ import 'package:discover_app/features/discover/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key});
+  final String query;
+
+  const ResultScreen({super.key, required this.query});
 
   @override
   Widget build(BuildContext context) {

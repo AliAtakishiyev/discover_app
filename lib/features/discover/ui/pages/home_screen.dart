@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     TextEditingController? searchController;
-    
+
     return Scaffold(
       backgroundColor: Color(0xffF8F7F0),
       body: SafeArea(
@@ -79,7 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ResultScreen(),
+                              builder: (context) =>
+                                  ResultScreen(query: searchController!.text),
                             ),
                           );
                         },
