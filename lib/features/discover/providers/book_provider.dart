@@ -23,6 +23,8 @@ class BookNotifier extends AsyncNotifier<List<BookModel>> {
   }
 
   Future<void> searchBooks(String query) async {
+    query = query.trim().toLowerCase().replaceAll(RegExp(r'\s+'), '+');
+
     state = const AsyncLoading();
 
     state = await AsyncValue.guard(() => _repository.getBooks(query));
