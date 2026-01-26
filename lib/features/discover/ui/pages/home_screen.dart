@@ -11,10 +11,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController? searchController;
-
     return Scaffold(
       backgroundColor: Color(0xffF8F7F0),
       body: SafeArea(
@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  ResultScreen(query: searchController!.text),
+                                  ResultScreen(query: searchController.text),
                             ),
                           );
                         },

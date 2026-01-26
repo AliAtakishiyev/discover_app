@@ -10,7 +10,14 @@ class ResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffF8F7F0),
-      body: SafeArea(child: Column(children: [CustomAppBar()])),
+      body: SafeArea(
+        child: Column(
+          children: [
+            CustomAppBar(),
+
+            ]
+          )
+      ),
     );
   }
 }
