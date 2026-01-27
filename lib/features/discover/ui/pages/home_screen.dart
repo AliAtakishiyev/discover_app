@@ -1,4 +1,3 @@
-import 'package:discover_app/features/discover/ui/pages/result_screen.dart';
 import 'package:discover_app/features/discover/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController searchController = TextEditingController();
-
+  bool searched = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,19 +20,29 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             CustomAppBar(),
-            SizedBox(height: 50),
-            Text(
-              "Discover",
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 60,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 24),
-            Text(
-              "Search millions of books",
-              style: GoogleFonts.roboto(color: Color(0xff887F77), fontSize: 18),
-            ),
+            SizedBox(height: 28),
+
+            searched
+                ? SizedBox.shrink()
+                : Column(
+                    children: [
+                      Text(
+                        "Discover",
+                        style: GoogleFonts.playfairDisplay(
+                          fontSize: 60,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 24),
+                      Text(
+                        "Search millions of books",
+                        style: GoogleFonts.roboto(
+                          color: Color(0xff887F77),
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
 
             SizedBox(height: 54),
 
@@ -44,6 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: TextField(
                       controller: searchController,
+                      onChanged: (value) {
+                        setState(() {});
+                      },
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.search),
                         contentPadding: EdgeInsets.symmetric(vertical: 24),
@@ -75,20 +87,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 72,
                       width: 120,
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  ResultScreen(query: searchController.text),
-                            ),
-                          );
-                        },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
-                          backgroundColor: Color(0xffE5BC8C),
+                          backgroundColor: searchController.text.isNotEmpty
+                              ? Color(0xffCE8217)
+                              : Color(0xffE5BC8C),
                         ),
                         child: Text(
                           "Search",
