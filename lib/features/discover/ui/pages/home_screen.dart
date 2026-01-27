@@ -1,19 +1,22 @@
+import 'package:discover_app/features/discover/providers/book_provider.dart';
 import 'package:discover_app/features/discover/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   final TextEditingController searchController = TextEditingController();
   bool searched = false;
   @override
   Widget build(BuildContext context) {
+    final bookState = ref.watch(bookProvider);
     return Scaffold(
       backgroundColor: Color(0xffF8F7F0),
       body: SafeArea(
@@ -87,7 +90,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 72,
                       width: 120,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          bookState.when(
+                            data: (data) {},
+                            error: (e, _) => SizedBox.shrink,
+                            loading: () => CircularProgressIndicator(),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
