@@ -1,4 +1,5 @@
 import 'package:discover_app/features/discover/providers/book_provider.dart';
+import 'package:discover_app/features/discover/ui/widgets/book_card.dart';
 import 'package:discover_app/features/discover/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -92,7 +93,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       child: ElevatedButton(
                         onPressed: () {
                           bookState.when(
-                            data: (data) {},
+                            data: (data) {
+                              final books = data;
+                              GridView.builder(
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 16,
+                                      mainAxisSpacing: 16,
+                                    ),
+                                itemBuilder: (context, index) {
+                                  return BookCard(book: books[index]);
+                                },
+                              );
+                            },
                             error: (e, _) => SizedBox.shrink,
                             loading: () => CircularProgressIndicator(),
                           );
