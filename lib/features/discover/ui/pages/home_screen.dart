@@ -122,24 +122,40 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             ),
 
+            SizedBox(height: 70),
+
+
             Expanded(
               child: bookState.when(
                 data: (data) {
                   final books = data;
-                  return GridView.builder(
-                    itemCount: books.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
+                  return Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        searched ? Padding(
+                          padding: const EdgeInsets.only(bottom: 30),
+                          child: Text("${books.length} results",style: TextStyle(fontSize: 16,color: Color(0xff887F77)), ),
+                        ) : SizedBox.shrink(),
+                        Expanded(
+                          child: GridView.builder(
+                            itemCount: books.length,
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16,
+                            ),
+                            itemBuilder: (context, index) {
+                              return BookCard(book: books[index]);
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                    itemBuilder: (context, index) {
-                      return BookCard(book: books[index]);
-                    },
                   );
                 },
                 error: (e, _) => SizedBox.shrink(),
-                loading: () => CircularProgressIndicator(),
+                loading: () => Center(child: CircularProgressIndicator(color: Color(0xffCE8217),)),
               ),
             ),
           ],
