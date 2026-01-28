@@ -26,27 +26,29 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             CustomAppBar(),
             SizedBox(height: 28),
 
-            searched
-                ? SizedBox.shrink()
-                : Column(
-                    children: [
-                      Text(
-                        "Discover",
-                        style: GoogleFonts.playfairDisplay(
-                          fontSize: 60,
-                          fontWeight: FontWeight.bold,
+            if (!searched) ...[
+              searched
+                  ? SizedBox.shrink()
+                  : Column(
+                      children: [
+                        Text(
+                          "Discover",
+                          style: GoogleFonts.playfairDisplay(
+                            fontSize: 60,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 24),
-                      Text(
-                        "Search millions of books",
-                        style: GoogleFonts.roboto(
-                          color: Color(0xff887F77),
-                          fontSize: 18,
+                        SizedBox(height: 24),
+                        Text(
+                          "Search millions of books",
+                          style: GoogleFonts.roboto(
+                            color: Color(0xff887F77),
+                            fontSize: 18,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+            ],
 
             SizedBox(height: 54),
 
@@ -92,24 +94,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       width: 120,
                       child: ElevatedButton(
                         onPressed: () {
-                          bookState.when(
-                            data: (data) {
-                              final books = data;
-                              GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 16,
-                                      mainAxisSpacing: 16,
-                                    ),
-                                itemBuilder: (context, index) {
-                                  return BookCard(book: books[index]);
-                                },
-                              );
-                            },
-                            error: (e, _) => SizedBox.shrink,
-                            loading: () => CircularProgressIndicator(),
-                          );
+                          final query = searchController.text;
+                          if (query.isNotEmpty) {
+                            ref.read(bookProvider.notifier).searchBooks(query);
+                            setState(() => searched = true);
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -130,6 +119,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ),
                   ),
                 ],
+              ),
+            ),
+
+            Expanded(
+              child: bookState.when(
+                data: (data) {
+                  final books = data;
+                  return GridView.builder(
+                    itemCount: books.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                    ),
+                    itemBuilder: (context, index) {
+                      return BookCard(book: books[index]);
+                    },
+                  );
+                },
+                error: (e, _) => SizedBox.shrink(),
+                loading: () => CircularProgressIndicator(),
               ),
             ),
           ],
