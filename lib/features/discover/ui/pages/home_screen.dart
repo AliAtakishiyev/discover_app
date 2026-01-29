@@ -144,6 +144,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               crossAxisCount: 2,
                               crossAxisSpacing: 16,
                               mainAxisSpacing: 16,
+                              childAspectRatio: 0.60
                             ),
                             itemBuilder: (context, index) {
                               return BookCard(book: books[index]);
