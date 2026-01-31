@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BookCard extends StatelessWidget {
   final dynamic book;
@@ -10,16 +11,16 @@ class BookCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
 
       child: Column(
+        crossAxisAlignment: .start,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: AspectRatio(
-              aspectRatio: 3 / 5,
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
               child: CachedNetworkImage(
                 imageUrl: book.coverUrl,
                 fit: BoxFit.cover,
@@ -36,6 +37,23 @@ class BookCard extends StatelessWidget {
             ),
           ),
 
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+            child: Text(
+              "${book.title}",
+              style: GoogleFonts.almendra(fontWeight: .bold, fontSize: 24),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+            child: Text(
+              "${book.author}",
+              style: TextStyle(color: Color(0xff8A8077)),
+            ),
+          ),
         ],
       ),
     );
