@@ -1,16 +1,5 @@
-# discover_app
+# Discover App
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img width="322" height="699" alt="1" src="https://github.com/user-attachments/assets/6cb0198d-186f-477b-9e2f-67bfcf7f33ba" />
+<img width="322" height="699" alt="2" src="https://github.com/user-attachments/assets/4c084f7f-724f-4571-8fd7-d6db6ea91ca1" />
+<img width="322" height="699" alt="3" src="https://github.com/user-attachments/assets/a823065e-d45f-4397-81b9-263ac078c093" />
