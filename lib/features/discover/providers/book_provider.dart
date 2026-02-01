@@ -29,4 +29,13 @@ class BookNotifier extends AsyncNotifier<List<BookModel>> {
 
     state = await AsyncValue.guard(() => _repository.getBooks(query));
   }
+
+  Future<BookModel> getDescription(BookModel book) async {
+    try {
+      final fullBook = await _repository.getDescription(book);
+      return fullBook;
+    } catch (e) {
+      throw Exception('Failed to load book description');
+    }
+  }
 }

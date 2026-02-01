@@ -124,7 +124,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
             SizedBox(height: 70),
 
-
             Expanded(
               child: bookState.when(
                 data: (data) {
@@ -133,19 +132,28 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        searched ? Padding(
-                          padding: const EdgeInsets.only(bottom: 30),
-                          child: Text("${books.length} results",style: TextStyle(fontSize: 16,color: Color(0xff887F77)), ),
-                        ) : SizedBox.shrink(),
+                        searched
+                            ? Padding(
+                                padding: const EdgeInsets.only(bottom: 30),
+                                child: Text(
+                                  "${books.length} results",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Color(0xff887F77),
+                                  ),
+                                ),
+                              )
+                            : SizedBox.shrink(),
                         Expanded(
                           child: GridView.builder(
                             itemCount: books.length,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 16,
-                              mainAxisSpacing: 16,
-                              childAspectRatio: 0.40
-                            ),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 16,
+                                  mainAxisSpacing: 16,
+                                  childAspectRatio: 0.40,
+                                ),
                             itemBuilder: (context, index) {
                               return BookCard(book: books[index]);
                             },
@@ -156,7 +164,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   );
                 },
                 error: (e, _) => SizedBox.shrink(),
-                loading: () => Center(child: CircularProgressIndicator(color: Color(0xffCE8217),)),
+                loading: () => Center(
+                  child: CircularProgressIndicator(color: Color(0xffCE8217)),
+                ),
               ),
             ),
           ],

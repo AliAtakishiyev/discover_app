@@ -1,22 +1,32 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:discover_app/features/discover/providers/book_provider.dart';
 import 'package:discover_app/features/discover/ui/pages/book_details_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class BookCard extends StatelessWidget {
+class BookCard extends ConsumerWidget {
   final dynamic book;
 
   const BookCard({super.key, required this.book});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () {
+
+      
+
+      onTap: () async {
+        final fullBook = await ref.read(bookProvider.notifier).getDescription(book);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => BookDetailsScreen()),
+          MaterialPageRoute(
+            builder: (context) => BookDetailsScreen(book: fullBook),
+          ),
         );
+
+        ref.read(bookProvider.notifier).getDescription(book);
       },
       child: Container(
         decoration: BoxDecoration(
