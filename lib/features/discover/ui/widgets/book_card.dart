@@ -38,7 +38,7 @@ class BookCard extends StatelessWidget {
           ),
 
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             child: Text(
               "${book.title}",
               style: GoogleFonts.almendra(fontWeight: .bold, fontSize: 24),
@@ -48,9 +48,17 @@ class BookCard extends StatelessWidget {
           ),
 
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             child: Text(
               "${book.author}",
+              style: TextStyle(color: Color(0xff8A8077)),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: Text(
+              "${book.firstPublishYear}",
               style: TextStyle(color: Color(0xff8A8077)),
             ),
           ),

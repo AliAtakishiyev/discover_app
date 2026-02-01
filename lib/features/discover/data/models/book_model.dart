@@ -1,12 +1,10 @@
-import 'dart:ffi';
-
 class BookModel {
   final String title;
   final String author;
   final String coverUrl;
   final String workKey;
   final String description;
-  final String firstPublishedDate;
+  final int firstPublishYear;
 
   BookModel({
     required this.title,
@@ -14,7 +12,7 @@ class BookModel {
     required this.coverUrl,
     required this.workKey,
     required this.description,
-    required this.firstPublishedDate
+    required this.firstPublishYear,
   });
 
   factory BookModel.fromJson(Map<String, dynamic> json) {
@@ -32,7 +30,7 @@ class BookModel {
           : '',
       workKey: json['key'] ?? '',
       description: '',
-      firstPublishedDate: json['first_publish_year'] ?? '0'
+      firstPublishYear: json['first_publish_year'] ?? 0,
     );
   }
 
@@ -53,7 +51,7 @@ class BookModel {
       coverUrl: base.coverUrl,
       workKey: base.workKey,
       description: description,
-      firstPublishedDate: base.firstPublishedDate
+      firstPublishYear: base.firstPublishYear,
     );
   }
 }
